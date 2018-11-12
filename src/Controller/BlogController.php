@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,9 +36,9 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route ("blog/{slug}", requirements={"slug"="\b[a-z0-9-]+\b"}, name="blog_show")
+     * @Route ("/{slug}", requirements={"slug"="\b[a-z0-9-]+\b"}, name="blog_show")
      */
-    public function show($slug='article-sans-titre'):Response
+    public function show($slug):Response
     {
         if (!$slug) {
             throw $this
@@ -65,4 +66,41 @@ class BlogController extends AbstractController
             ]
         );
     }
+
+
+    /**
+     * @Route("/category/{category}", name="blog_show_category")
+     * @param string $category
+     * @return Response
+     */
+    public function showByCategory(string $category):Response
+        {
+            if (!$category) {
+                throw $this
+                    ->createNotFoundException('No category has been sent .');
+            }
+
+//            $category = preg_replace(
+//                '/-/',
+//                ' ', ucwords(trim(strip_tags($category)), "-")
+//            );
+
+            $category = $this->getDoctrine()
+                ->getRepository(Category::class)
+                ->findOneBy(['name' => $category]);
+
+
+            if (!$category) {
+                throw $this->createNotFoundException(
+                    'No category with '.$category.' name.'
+                );
+            }
+            return $this->render(
+                'category/show.html.twig',
+                [
+                    'category' => $category,
+                ]
+            );
+
+        }
 }
