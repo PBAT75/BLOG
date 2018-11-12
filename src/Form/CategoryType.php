@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: patricia
- * Date: 12/11/18
- * Time: 17:47
- */
 
 namespace App\Form;
 
@@ -28,5 +22,4 @@ class CategoryType extends AbstractType
             'data_class' => Category::class,
         ]);
     }
-
 }

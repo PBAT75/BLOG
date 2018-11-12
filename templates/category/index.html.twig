@@ -17,4 +17,12 @@
         <li>Your template at <code><a href="{{ 'templates/category/index.html.twig'|file_link(0) }}">templates/category/index.html.twig</a></code></li>
     </ul>
 </div>
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+
+
 {% endblock %}

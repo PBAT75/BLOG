@@ -37,14 +37,12 @@ class BlogController extends AbstractController
 //            ['method' => Request::METHOD_GET]
 //        );
 
-        $category = new Category();
-        $form = $this->createForm(CategoryType::class, $category);
+
 
         return $this->render(
             'blog/index.html.twig',
             ['articles' => $articles,
-                'category'=>$category,
-                'form' => $form->createView(),
+
                 'controller_name' => 'BlogController']
         );
     }
