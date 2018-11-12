@@ -13,4 +13,13 @@
         </div>
     {% endfor %}
 
+
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    <button type="submit" name="btnSearch">Rechercher</button>
+    {{ form_end(form) }}
+
+
+
+
 {% endblock %}
