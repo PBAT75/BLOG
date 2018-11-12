@@ -23,17 +23,28 @@ class ArticleController extends AbstractController
         ]);
     }
 
+//
+//    /**
+//     * @Route("/article/{id}", name="article_show")
+//     * @param Article $article
+//     * @return Response
+//     */
+//    public function show($id) :Response
+//    {
+//        $repo= $this->getDoctrine()->getRepository(Article::class);
+//        $article=$repo->find($id);
+//
+//        return $this->render('article/show.html.twig', ['article'=>$article]);
+//    }
 
     /**
      * @Route("/article/{id}", name="article_show")
      * @param Article $article
      * @return Response
      */
-    public function show($id) :Response
+    public function show(Article $article) :Response
     {
-        $repo= $this->getDoctrine()->getRepository(Article::class);
-        $article=$repo->find($id);
-
         return $this->render('article/show.html.twig', ['article'=>$article]);
     }
+
 }

@@ -20,14 +20,24 @@ class CategoryController extends AbstractController
     }
 
 
+//    /**
+//     * @Route("/category/{id}", name="category_show")
+//     */
+//    public function show($id) :Response
+//    {
+//        $repo= $this->getDoctrine()->getRepository(Category::class);
+//        $category=$repo->find($id);
+//
+//        return $this->render('category/show.html.twig', ['category'=>$category]);
+//    }
+
     /**
      * @Route("/category/{id}", name="category_show")
+     * @param Category $category
+     * @return Response
      */
-    public function show($id) :Response
+    public function show(Category $category) :Response
     {
-        $repo= $this->getDoctrine()->getRepository(Category::class);
-        $category=$repo->find($id);
-
         return $this->render('category/show.html.twig', ['category'=>$category]);
     }
 }
