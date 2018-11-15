@@ -9,9 +9,11 @@
 namespace App\Form;
 
 use App\Entity\Category;
+use App\Entity\Article;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
 class ArticleSearchType extends AbstractType
@@ -20,10 +22,18 @@ class ArticleSearchType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('content')
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
 ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Article::class,
+        ]);
     }
 
 }

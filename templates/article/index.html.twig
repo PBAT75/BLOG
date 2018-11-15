@@ -17,4 +17,17 @@
         <li>Your template at <code><a href="{{ 'templates/article/index.html.twig'|file_link(0) }}">templates/article/index.html.twig</a></code></li>
     </ul>
 </div>
+
+
+
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.content) }}
+    {{ form_row(form.category) }}
+    <button type="submit" name="btnSearch">Enregistrer</button>
+    {{ form_end(form) }}
+
+
+
+
 {% endblock %}

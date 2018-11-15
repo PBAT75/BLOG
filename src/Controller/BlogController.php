@@ -31,18 +31,18 @@ class BlogController extends AbstractController
             );
         }
 
-        $form = $this->createForm(
-            ArticleSearchType::class,
-            null,
-            ['method' => Request::METHOD_GET]
-        );
+//        $form = $this->createForm(
+//            ArticleSearchType::class,
+//            null,
+//            ['method' => Request::METHOD_GET]
+//        );
 
 
 
         return $this->render(
             'blog/index.html.twig',
             ['articles' => $articles,
-                'form' => $form->createView(),
+                //'form' => $form->createView(),
                 'controller_name' => 'BlogController']
         );
     }
@@ -78,6 +78,5 @@ class BlogController extends AbstractController
             ]
         );
     }
-
 
 }
