@@ -25,6 +25,7 @@ class CategoryController extends AbstractController
 
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
+        //hydrate automatiquement l’objet Article avec les données saisies dans le formulaire
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
