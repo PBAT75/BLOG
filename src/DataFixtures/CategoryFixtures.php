@@ -14,12 +14,24 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class CategoryFixtures extends Fixture
 {
+
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
-      for($i=0;$i<=50;$i++) {
+        $categories = [
+            'PHP',
+            'Javascript',
+            'Java',
+            'Ruby'
+        ];
+
+        foreach($categories as $key => $categoryName ) {
           $category = new Category();
-          $category->setName('Nom de catégorie'.$i);
+          $category->setName($categoryName);
           $manager->persist($category);
+          $this->addReference('categorie_' . $key, $category);
       }
         $manager->flush();
     }
