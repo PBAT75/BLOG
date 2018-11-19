@@ -8,6 +8,7 @@
 
 namespace App\DataFixtures;
 
+use  Faker;
 use App\Entity\Category;
 use App\Entity\Article;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -27,13 +28,17 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        $faker = Faker\Factory::create('fr_FR');
 
-          $article = new Article();
-          $article->setTitle('Framework PHP : Symfony 4');
-          $article->setContent('Symfony 4, un framework sympa à connaître!');
-          $manager->persist($article);
-        $article->setCategory($this->getReference('categorie_0'));
-
+        for ($index = 0; $index <= 3; $index++){
+            for ($i = 1; $i <= 50; $i++) {
+                $article = new Article();
+                $article->setTitle($faker->name);
+                $article->setContent($faker->text);
+                $manager->persist($article);
+                $article->setCategory($this->getReference('categorie_' . $index));
+            }
+    }
         $manager->flush();
     }
 }
