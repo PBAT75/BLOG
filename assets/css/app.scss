@@ -1,0 +1,13 @@
+@import "~bootstrap/scss/bootstrap";
+
+$primary: darken(#428bca, 20%);
+
+body {
+    background-color: darken $primary;
+}
+
+.italic
+{
+    color: $primary;
+    font-style: italic;
+}
